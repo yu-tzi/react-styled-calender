@@ -7,7 +7,15 @@ import styled from 'styled-components'
 var toObject = require('dayjs/plugin/toObject')
 dayjs.extend(toObject)
 
-
+const Block = styled.div`
+    color: blue;
+    border: 1px solid blue;
+    background-color: ${props=>props.color};
+`
+const BlockContainer = styled.div`
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+`
 
 const Calender = (props) => {
     const { selectedTime, setSelectedTime } = props
@@ -27,34 +35,22 @@ const Calender = (props) => {
         }
     }
 
-    const Block = styled.div`
-        color: blue;
-        border: 1px solid blue;
-        background-color: ${props=>props.color};
-    `
-    const BlockContainer = styled.div`
-        display: grid;
-        grid-template-columns: auto auto auto auto auto auto auto;
-    `
     const validClick = (index) => {
-        console.log(`i am click ${index}`)
         if(index !== ''){
             const newDay = dayjs().date(index).toObject()
-            console.log(newDay);
-           // 把初始值跟選擇值 bind 起來
+            setSelectedTime(newDay) 
         }
     }
 
     useEffect(()=>{
         // @ts-ignore: Unreachable code error
         const now = dayjs().toObject();
-        console.log(now)
         setSelectedTime(now)
       },[])
 
     return(
         <>
-            <div>{`${years} 年 ${months} 月` /*左右按鈕*/}</div>
+            <div>{`${years} 年 ${months} 月 ${date} 日` /*左右按鈕*/}</div>
             <BlockContainer>
                 {weekList.map((day)=>{
                     return(
