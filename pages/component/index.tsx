@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 
 const DatePicker = () => {
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(undefined);
 
     return (
         <>

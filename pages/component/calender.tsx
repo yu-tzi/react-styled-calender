@@ -19,11 +19,13 @@ const BlockContainer = styled.div`
 
 const Calender = (props) => {
     const { selectedTime, setSelectedTime } = props
-    const { years, months, date } = selectedTime || {}
-    const firstDay = dayjs().startOf('month').day() + 1
-    const lastDate = dayjs().endOf('month').date()
-    const lastDay = dayjs().endOf('month').day() + 1
-    const weekList = [ 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ]
+    const month = selectedTime.month() + 1 // month 從 0 開始算
+    const years = selectedTime.year()
+    const date = selectedTime.date()
+    const firstDay = selectedTime.startOf('month').day() 
+    const lastDate = selectedTime.endOf('month').date()
+    const lastDay = selectedTime.endOf('month').day() 
+    const weekList = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
     const monthDay = []
     for(let i=1; i < firstDay + lastDate + (7-lastDay); i++){
         if(i <= firstDay){
@@ -35,22 +37,34 @@ const Calender = (props) => {
         }
     }
 
-    const validClick = (index) => {
+    const validDateClick = (index) => {
         if(index !== ''){
-            const newDay = dayjs().date(index).toObject()
+            const newDay = selectedTime.date(index)
             setSelectedTime(newDay) 
         }
     }
 
+    const addMonthClick = () => {
+        const newDay = selectedTime.add(1, 'month')
+        setSelectedTime(newDay) 
+    }
+
+    const minusMonthClick = () => {
+        const newDay = selectedTime.subtract(1, 'month')
+        setSelectedTime(newDay) 
+    }
+
     useEffect(()=>{
-        // @ts-ignore: Unreachable code error
-        const now = dayjs().toObject();
+        const now = dayjs();
         setSelectedTime(now)
       },[])
 
     return(
         <>
-            <div>{`${years} 年 ${months} 月 ${date} 日` /*左右按鈕*/}</div>
+            <div>{` NOW SELECT ${years}/${month}/${date}`}</div>
+            <div>{`${years} 年 ${month} 月`}</div>
+            <button onClick={minusMonthClick}>{`<`}</button>
+            <button onClick={addMonthClick}>{`>`}</button>
             <BlockContainer>
                 {weekList.map((day)=>{
                     return(
@@ -61,7 +75,7 @@ const Calender = (props) => {
                     return(
                         <Block key={`date-key-${index}`} 
                             color={date === dateDisplay ? "yellow":"white"}
-                            onClick={() => {validClick(dateDisplay)}}
+                            onClick={() => {validDateClick(dateDisplay)}}
                         >
                             {dateDisplay}
                         </Block>
