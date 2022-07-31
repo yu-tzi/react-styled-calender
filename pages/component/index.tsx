@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 
 
 const DatePicker = () => {
-  const [defautTime, setDefaultTime] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
 
     return (
         <>
           <div>this is where i manager state</div>
           <Input/>
-          <Calender defautTime={defautTime} setDefaultTime={setDefaultTime}/>
+          <Calender selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
         </>
       )
 }

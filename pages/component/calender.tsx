@@ -10,8 +10,8 @@ dayjs.extend(toObject)
 
 
 const Calender = (props) => {
-    const { defautTime, setDefaultTime } = props
-    const { years, months, date } = defautTime || {}
+    const { selectedTime, setSelectedTime } = props
+    const { years, months, date } = selectedTime || {}
     const firstDay = dayjs().startOf('month').day() + 1
     const lastDate = dayjs().endOf('month').date()
     const lastDay = dayjs().endOf('month').day() + 1
@@ -49,7 +49,7 @@ const Calender = (props) => {
         // @ts-ignore: Unreachable code error
         const now = dayjs().toObject();
         console.log(now)
-        setDefaultTime(now)
+        setSelectedTime(now)
       },[])
 
     return(
