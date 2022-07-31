@@ -19,12 +19,12 @@ const BlockContainer = styled.div`
 
 const Calender = (props) => {
     const { selectedTime, setSelectedTime } = props
-    const month = selectedTime.month() + 1 // month 從 0 開始算
-    const years = selectedTime.year()
-    const date = selectedTime.date()
-    const firstDay = selectedTime.startOf('month').day() 
-    const lastDate = selectedTime.endOf('month').date()
-    const lastDay = selectedTime.endOf('month').day() 
+    const month = selectedTime ? selectedTime.month() + 1 : undefined // month 從 0 開始算
+    const years = selectedTime?.year()
+    const date = selectedTime?.date()
+    const firstDay = selectedTime?.startOf('month').day() 
+    const lastDate = selectedTime?.endOf('month').date()
+    const lastDay = selectedTime?.endOf('month').day() 
     const weekList = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
     const monthDay = []
     for(let i=1; i < firstDay + lastDate + (7-lastDay); i++){
