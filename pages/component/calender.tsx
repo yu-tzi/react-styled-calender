@@ -1,4 +1,4 @@
-const Calender = (defautTime: object, setDefaultTime: void) => {
+const Calender = (defautTime: any, setDefaultTime: void) => {
     // 當下的年份 月份
     // 字串 from mon to sun
     // 這個月的所有日期按照星期排列
