@@ -19,7 +19,7 @@ const BlockContainer = styled.div`
 
 const Calender = (props) => {
     const { selectedTime, setSelectedTime } = props
-    const month = selectedTime ? selectedTime.month() + 1 : undefined // month 從 0 開始算
+    const month = selectedTime ? selectedTime?.month() + 1  : undefined// month 從 0 開始算
     const years = selectedTime?.year()
     const date = selectedTime?.date()
     const firstDay = selectedTime?.startOf('month').day() 
@@ -53,11 +53,6 @@ const Calender = (props) => {
         const newDay = selectedTime.subtract(1, 'month')
         setSelectedTime(newDay) 
     }
-
-    useEffect(()=>{
-        const now = dayjs();
-        setSelectedTime(now)
-      },[])
 
     return(
         <>

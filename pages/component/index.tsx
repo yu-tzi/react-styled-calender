@@ -1,15 +1,19 @@
 import Calender from "./calender"
 import Input from "./input"
 import { useState, useEffect } from 'react'
+import dayjs from 'dayjs'
 
 
 const DatePicker = () => {
-  const [selectedTime, setSelectedTime] = useState(undefined);
-
+  const [selectedTime, setSelectedTime] = useState(dayjs());
+  useEffect(()=>{
+    const now = dayjs();
+    setSelectedTime(now)
+  },[])
     return (
         <>
-          <div>this is where i manager state</div>
-          <Input/>
+          <div> 🥱 🥱 🥱 </div>
+          <Input selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
           <Calender selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
         </>
       )
