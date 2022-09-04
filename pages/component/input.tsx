@@ -8,22 +8,21 @@ const Input = (props) => {
     // 把正確的 day 格式傳送給 state
     // 把 state 顯示在 input 框上
     const { selectedTime, setSelectedTime } = props;  
-    const [ inputValue, setInputValue ] =  useState(null);
-    console.log(inputValue)
+    const [ inputValue, setInputValue ] =  useState(selectedTime);
     const getValidationDate = () => {  
-        console.log(inputValue)
         // input value 轉換成合格的時間格式
         const validValue = inputValue
-        console.log(validValue)
         // setSelectedTime(validValue);
     }
-        
-    
+
+    useEffect(() => {
+        setInputValue(selectedTime)
+    },[selectedTime]);
 
     return(
         <>
             <input type="text" 
-                value={inputValue || selectedTime}
+                value={inputValue}
                 onBlur={()=>{ getValidationDate()}}
                 onKeyUp={(e)=>{ 
                     if (e.key === 'Enter' || e.keyCode === 13){
