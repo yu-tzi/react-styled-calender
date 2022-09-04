@@ -27,6 +27,7 @@ const Calender = (props) => {
     const lastDay = selectedTime?.endOf('month').day() 
     const weekList = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ]
     const monthDay = []
+    // 這一段需要重構
     for(let i=1; i < firstDay + lastDate + (7-lastDay); i++){
         if(i <= firstDay){
             monthDay.push("");
@@ -54,10 +55,10 @@ const Calender = (props) => {
         setSelectedTime(newDay) 
     }
 
+    // 日期顯示的區域可以使用 selectedTime 直接 format 出來的資料
     return(
         <>
-            <div>{` NOW SELECT ${years}/${month}/${date}`}</div>
-            <div>{`${years} 年 ${month} 月`}</div>
+            <div>{selectedTime.format('YYYY/MM/DD')}</div>
             <button onClick={minusMonthClick}>{`<`}</button>
             <button onClick={addMonthClick}>{`>`}</button>
             <BlockContainer>

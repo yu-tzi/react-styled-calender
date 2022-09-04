@@ -12,7 +12,7 @@ const DatePicker = () => {
   },[])
     return (
         <>
-          <div> 🥱 🥱 🥱 </div>
+          <div> 🌸 🌸 🌸 </div>
           <Input selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
           <Calender selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
         </>
