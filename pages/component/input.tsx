@@ -8,21 +8,22 @@ const Input = (props) => {
 
 
     const getSplitStr = (str, eleArr) => {
-        // 改用 reduce 直接判斷 ele 是否為 num? 
         for(let i=0; i< str.length; i++){
             if ((str.includes(eleArr[i]))) {
                 return str.split(eleArr[i]);
             }
         }
+        return
     }
 
     const parseValiateData = () => {
-        // 尋找把日期變成 string 的其他方式（現在會殘留 "" 在上面）
-        const inputValueStr = JSON.stringify(inputValue);
         const validSymbol = ['/', '／', '-', '.'];
-        const splitStr = getSplitStr(inputValueStr, validSymbol)
+        const splitStrArr = getSplitStr(inputValue, validSymbol);
+        console.log(splitStrArr);
 
         // 容許的輸入格式：'YYYY/MM/DD', 'DD/MM/YYYY', '6/5/2019', '1/23/2019', '40/12/2019', '2022／03／04', '2022-04-03', '2022.03.04', 年份最大值是？
+        // Day.js 原生容許的格式？
+        // 直接 new Date 失敗就跳警示？
         // 不容許的輸入格式：
         /*
         使用特定字元把字串切分成一塊一塊，年份 月份 日期分開計算，字元合法(isNum)嗎？ no => 給 default 值
